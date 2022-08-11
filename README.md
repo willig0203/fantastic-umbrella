@@ -19,13 +19,13 @@
 
 ## Installation
 
-Clone the repository from [GitHub](https://github.com/willig0203/fantastic-umbrella) onto your machine in a local folder if yoy want to run it locally.
+Clone the repository from [GitHub](https://github.com/willig0203/fantastic-umbrella) onto your machine in a local folder if you want to run it locally.
 
 ## Usage
 
-Step 1: From the terminal in vsCode type `npm install`.
+Step 1: From the terminal in vsCode type `npm install`,
 Step 2: Run the `db schema.sql` to create the database schema,
-Step 3: Force sync database to `true` (this will create the tables and relationships between the tables when server runs for the first time)
+Step 3: Force sync database to `true` (this will create the tables and relationships between the tables when server runs for the first time),
 Step 4: Enter `node server.js` to start the server and then stop the server.
 Step 5: Force sync database to `false` (this will stop seed from being overwritten),
 Step 6: Seed the database by running the `npm run seeds script`,
