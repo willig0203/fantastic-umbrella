@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { Category, Product } = require("../../models");
+// const sequelize = require("./config/connection");
 
 // The `/api/categories` endpoint
 
@@ -8,6 +9,7 @@ router.get("/", (req, res) => {
   // be sure to include its associated Products
 
   Category.findAll()
+
     .then((dbCategoryData) => res.json(dbCategoryData))
     .catch((err) => {
       console.log(err);
@@ -23,14 +25,20 @@ router.get("/:id", (req, res) => {
     where: {
       id: req.params.id,
     },
-    // attributes: [
-    //   'id',
-    //   'product_name',
-    //   'price',
-    //   'stock',
-    //   'category_id',
-    //   [sequelize.literal('(SELECT * FROM product WHERE post.id = vote.post_id)'), 'vote_count']
-    // ],
+    attributes: [
+      "id",
+      "product_name",
+      "price",
+      "stock",
+      "category_id",
+      [
+        sequelize.literal(
+          //sequelize not defined
+          "(SELECT * FROM product WHERE product.id = category.id)"
+        ),
+        "vote_count",
+      ],
+    ],
     include: [
       {
         model: Product,
