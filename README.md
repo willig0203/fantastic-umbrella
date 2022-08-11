@@ -33,9 +33,9 @@ Use the live app on Heroku: [https://note-taker-gdw.herokuapp.com/](https://note
 
 ## Screenshots
 
-|              <b>Image of database model</b>               |
-| :-------------------------------------------------------: |
-| ![space-1.jpgnpg](./assets/images/ecommerce_db_model.pgn) |
+|             <b>Image of database model</b>             |
+| :----------------------------------------------------: |
+| ![space-1.png](./assets/images/ecommerce_db_model.png) |
 
 <!-- |         <b>Image running on a mobile device</b>          |
 | :------------------------------------------------------: |
