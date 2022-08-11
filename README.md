@@ -33,13 +33,13 @@ Use the live app on Heroku: [https://note-taker-gdw.herokuapp.com/](https://note
 
 ## Screenshots
 
-|         <b>Image running on a computer</b>         |
-| :------------------------------------------------: |
-| ![space-1.jpg](./assets/images/homescreenshot.jpg) |
+|              <b>Image of database model</b>               |
+| :-------------------------------------------------------: |
+| ![space-1.jpgnpg](./assets/images/ecommerce_db_model.pgn) |
 
-|         <b>Image running on a mobile device</b>          |
+<!-- |         <b>Image running on a mobile device</b>          |
 | :------------------------------------------------------: |
-| ![space-2.jpg](./assets/images/homescreenshotmobile.jpg) |
+| ![space-2.jpg](./assets/images/homescreenshotmobile.jpg) | -->
 
 ## License
 
