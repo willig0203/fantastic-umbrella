@@ -3,7 +3,9 @@ const { Category } = require("../models");
 const categoryData = [
   {
     category_name: "Shirts",
-    product_id: 1, // why not seeding this column?
+    product_id: 1,
+    // why not seeding this column, link dosen't exist?
+    // enter them manually
   },
   {
     category_name: "Shorts",
