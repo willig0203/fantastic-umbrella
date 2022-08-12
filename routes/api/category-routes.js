@@ -10,7 +10,6 @@ router.get("/", (req, res) => {
   Category.findAll({ include: Product })
     .then((dbCategoryData) => res.json(dbCategoryData))
     .catch((err) => {
-      console.log(err);
       res.status(500).json(err);
     });
 });
@@ -18,7 +17,6 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
   // find one category by its `id` value
   // and include its associated Products
-  console.log("find one category by its `id` value");
   Category.findOne({
     where: {
       id: req.params.id,
@@ -37,7 +35,6 @@ router.get("/:id", (req, res) => {
       res.json(dbCategoryData);
     })
     .catch((err) => {
-      console.log(err);
       res.status(500).json(err);
     });
 });
@@ -59,7 +56,6 @@ router.post("/", (req, res) => {
       res.json(dbCategoryData);
     })
     .catch((err) => {
-      console.log(err);
       res.status(500).json(err);
     });
 });
@@ -84,7 +80,6 @@ router.put("/:id", (req, res) => {
       res.json(dbCategoryData);
     })
     .catch((err) => {
-      console.log(err);
       res.status(500).json(err);
     });
 });
@@ -98,7 +93,6 @@ router.delete("/:id", (req, res) => {
       res.json(dbCategoryData);
     })
     .catch((err) => {
-      console.log(err);
       res.status(500).json(err);
     });
 });

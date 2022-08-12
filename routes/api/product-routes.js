@@ -10,7 +10,6 @@ router.get("/", (req, res) => {
   Product.findAll({ include: Category, Tag })
     .then((dbProductData) => res.json(dbProductData))
     .catch((err) => {
-      console.log(err);
       res.status(500).json(err);
     });
 });
@@ -32,7 +31,6 @@ router.get("/:id", (req, res) => {
   })
     .then((dbProductData) => res.json(dbProductData))
     .catch((err) => {
-      console.log(err);
       res.status(500).json(err);
     });
 });
@@ -44,7 +42,7 @@ router.post("/", (req, res) => {
       product_name:"Basketball",
       price:"200.00",
       stock:"3",
-      tagIds:"[1, 2, 3, 4]" this craches the mapping, its not an array
+      tagIds:[1, 2, 3, 4]
     }
   */
   Product.create(req.body)
@@ -52,16 +50,7 @@ router.post("/", (req, res) => {
       // if there's product tags, we need to create pairings
       // to bulk create in the ProductTag model
       if (req.body.tagIds.length) {
-        // must be a better solution to "[1, 2, 3, 4]"
-        // is not an array
-        const arr = new Array();
-        const s = req.body.tagIds.split(" ").join();
-        for (let i = 0; i < s.length; i++) {
-          if (isNaN(s[i]) === false) {
-            arr.push(parseInt(s[i]));
-          }
-        }
-        const productTagIdArr = arr.map((tag_id) => {
+        const productTagIdArr = req.body.tagIds.map((tag_id) => {
           return {
             product_id: product.id,
             tag_id,
@@ -74,7 +63,6 @@ router.post("/", (req, res) => {
     })
     .then((productTagIds) => res.status(200).json(productTagIds))
     .catch((err) => {
-      console.log(err);
       res.status(400).json(err);
     });
 });
@@ -82,6 +70,14 @@ router.post("/", (req, res) => {
 // update product
 router.put("/:id", (req, res) => {
   // update product data
+  /* req.body should look like this...
+    {
+      product_name:"Basketball",
+      price:"200.00",
+      stock:"3",
+      tagIds:[1, 2, 3, 4]
+    }
+  */
   Product.update(req.body, {
     where: {
       id: req.params.id,
@@ -116,13 +112,28 @@ router.put("/:id", (req, res) => {
     })
     .then((updatedProductTags) => res.json(updatedProductTags))
     .catch((err) => {
-      // console.log(err);
       res.status(400).json(err);
     });
 });
 
 router.delete("/:id", (req, res) => {
   // delete one product by its `id` value
+  Product.destroy({
+    where: {
+      id: req.params.id,
+    },
+    include: [
+      {
+        model: ProductTag,
+      },
+    ],
+  })
+    .then((dbProductData) => {
+      res.json(dbProductData);
+    })
+    .catch((err) => {
+      res.status(500).json(err);
+    });
 });
 
 module.exports = router;
