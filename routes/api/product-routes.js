@@ -6,7 +6,7 @@ const { Product, Category, Tag, ProductTag } = require("../../models");
 // get all products
 router.get("/", (req, res) => {
   // find all products
-  // be sure to include its associated Category and Tag data
+  // and include its associated Category and Tag data
   Product.findAll({ include: Category, Tag })
     .then((dbProductData) => res.json(dbProductData))
     .catch((err) => {
@@ -18,24 +18,50 @@ router.get("/", (req, res) => {
 // get one product
 router.get("/:id", (req, res) => {
   // find a single product by its `id`
-  // be sure to include its associated Category and Tag data
+  // and include its associated Category and Tag data
+  Product.findAll({
+    where: {
+      id: req.params.id,
+    },
+    include: [
+      {
+        model: Category,
+        Tag,
+      },
+    ],
+  })
+    .then((dbProductData) => res.json(dbProductData))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 // create new product
 router.post("/", (req, res) => {
   /* req.body should look like this...
     {
-      product_name: "Basketball",
-      price: 200.00,
-      stock: 3,
-      tagIds: [1, 2, 3, 4]
+      product_name:"Basketball",
+      price:"200.00",
+      stock:"3",
+      tagIds:"[1, 2, 3, 4]" this craches the mapping, its not an array
     }
   */
   Product.create(req.body)
     .then((product) => {
-      // if there's product tags, we need to create pairings to bulk create in the ProductTag model
+      // if there's product tags, we need to create pairings
+      // to bulk create in the ProductTag model
       if (req.body.tagIds.length) {
-        const productTagIdArr = req.body.tagIds.map((tag_id) => {
+        // must be a better solution to "[1, 2, 3, 4]"
+        // is not an array
+        const arr = new Array();
+        const s = req.body.tagIds.split(" ").join();
+        for (let i = 0; i < s.length; i++) {
+          if (isNaN(s[i]) === false) {
+            arr.push(parseInt(s[i]));
+          }
+        }
+        const productTagIdArr = arr.map((tag_id) => {
           return {
             product_id: product.id,
             tag_id,
