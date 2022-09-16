@@ -1,11 +1,12 @@
--- open a terminal
--- mysql -u root -p
--- enter pw
--- show db in workbench
--- source db/schema.sql
--- show db in workbench
--- exit mysql 'quit'
--- npm run seeds
--- show db in workbench
--- enter proudiuct_id mannually in catagory 1 5 4 3 2
--- show db in workbench
+
+mysql -u root -p
+
+Pass@Word01Pass@Word01
+
+source db/schema.sql
+
+quit
+
+npm run seeds
+
+npm start

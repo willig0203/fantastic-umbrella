@@ -4,8 +4,6 @@
 
 ## This is a node.js web server application that will serve the backend of a ecommerce site yet to be created.
 
- <!-- The app is located on Heroku at [https://note-taker-gdw.herokuapp.com/](https://note-taker-gdw.herokuapp.com/). -->
-
 ## Table of Contents:
 
 - [Installation](#installation)
@@ -32,9 +30,10 @@ Step 6: Seed the database by running the `npm run seeds script`,
 Step 7: Enter `node server.js` to start the server,
 Step 8: Enter localhost:3001 in your browser.
 
-<!-- OR
+<!--
+// make video -->
 
-Use the live app on Heroku: [https://note-taker-gdw.herokuapp.com/](https://note-taker-gdw.herokuapp.com/) -->
+Video Link: [https://drive.google.com/file/d/1apMC08NxXDe0uM7m4cjBMF_klw_f2Uax/view](https://drive.google.com/file/d/1apMC08NxXDe0uM7m4cjBMF_klw_f2Uax/view)
 
 ## Screenshots
 
